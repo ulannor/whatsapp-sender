@@ -5,7 +5,6 @@ from openpyxl.styles import PatternFill, Font
 from openpyxl.formatting import Rule
 from openpyxl.styles.differential import DifferentialStyle
 from openpyxl.utils import get_column_letter
-import sender_functions as sf
 
 filename = 'нотариальные услуги'
 
