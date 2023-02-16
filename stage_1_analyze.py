@@ -16,7 +16,6 @@ if 'wanumbers_available' not in df.columns:
     df.insert(10, "wanumbers_available", 0)
     df.insert(11, "message_count", 0)
 
-originalColList = list(df.columns)
 
 waNumberColList = [col for col in df if col.startswith('whatsapp')]
 nonwaNumberColList = [col for col in df if col.startswith('phone')]
