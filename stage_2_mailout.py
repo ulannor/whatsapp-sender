@@ -1,6 +1,6 @@
 
-
-
 filename = 'нотариальные услуги'
 
-filepath = f'.\\sourcedata\\{filename}.xlsx'
+filepath = f'.\\edited\\{filename}_edited.xlsx'
+
+
