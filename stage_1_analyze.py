@@ -59,9 +59,8 @@ dfLog['wanumbers_processed'] = dfLog.dropna(subset=['message_wanumber']).groupby
 dfLog['nonwanumbers_processed'] = dfLog.dropna(subset=['message_nonwanumber']).groupby('2GIS URL', group_keys=False)[
     'message_nonwanumber'].apply(lambda x: len(list(set(x))))
 
-dfLog.to_excel(f'.\\test\\{filename}_edited.xlsx', index=False)
 
-newColList = list(dfLog.columns)[15:23]
+newColList = list(dfLog.columns)[15:23] #modify this part to refer to names instead of numbers
 
 dfLogNoDups = dfLog.drop_duplicates(subset='2GIS URL', keep='last')
 
@@ -75,13 +74,13 @@ for name in newColList:
     col = df.pop(name)
     df.insert(12 + newColList.index(name), col.name, col)
 
-df.to_excel(f".\\test\\{filename}_edited2.xlsx", index=False)
+df.to_excel(f".\\temp\\{filename}_edited.xlsx", index=False)
 
 tempLst = []
 for _ in waNumberColList + nonwaNumberColList:
     tempLst.append(df.columns.tolist().index(_) + 1)
 
-wb = op.load_workbook(f".\\test\\{filename}_edited2.xlsx")
+wb = op.load_workbook(f".\\temp\\{filename}_edited.xlsx")
 ws = wb.active
 
 red_text = Font(color="9C0006")
@@ -95,5 +94,6 @@ for _ in tempLst:
     ws.conditional_formatting.add(f'{column_letter}{bgn}:{column_letter}{end}', rule)
 ws.conditional_formatting.add(f'A{bgn}:A{end}', rule)
 ws.auto_filter.ref = ws.dimensions
+ws.freeze_panes = 'A2'
 
-wb.save(f".\\test\\{filename}_edited3.xlsx")
+wb.save(f".\\edited\\{filename}_edited.xlsx")
