@@ -18,7 +18,7 @@ if 'wanumbers_available' not in df.columns:
     df.insert(11, "message_count", 0)
 
 originalColList = list(df.columns)
-print(originalColList)
+
 waNumberColList = [col for col in df if col.startswith('whatsapp')]
 nonwaNumberColList = [col for col in df if col.startswith('phone')]
 
@@ -78,14 +78,9 @@ for name in newColList:
 
 df.to_excel(f".\\test\\{filename}_edited2.xlsx", index=False)
 
-print(df.columns.tolist())
-print(len(df.columns.tolist()))
-
 tempLst = []
 for _ in waNumberColList + nonwaNumberColList:
     tempLst.append(df.columns.tolist().index(_) + 1)
-
-print(tempLst)
 
 wb = op.load_workbook(f".\\test\\{filename}_edited2.xlsx")
 ws = wb.active
