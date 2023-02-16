@@ -102,6 +102,4 @@ for _ in tempLst:
 ws.conditional_formatting.add(f'A{bgn}:A{end}', rule)
 ws.auto_filter.ref = ws.dimensions
 
-print(ws.dimensions)
-
 wb.save(f".\\test\\{filename}_edited3.xlsx")
