@@ -1,6 +1,11 @@
+import pandas as pd
 
-filename = 'нотариальные услуги'
+leadsfile = 'нотариальные услуги'
+messagetxt = 'text'
+n = 20
 
-filepath = f'.\\edited\\{filename}_edited.xlsx'
+filepath = f'.\\edited\\{leadsfile}_edited.xlsx'
+txtpath =  f'.\\messages\\{messagetxt}.txt'
 
+df = pd.read_excel(filepath, dtype='object')
 
