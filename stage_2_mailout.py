@@ -33,7 +33,7 @@ try:
             dftemp = df.iloc[_, 0:11]
             dftemp['message_wanumber'] = phone
             dftemp['message_nonwanumber'] = ''
-            dftemp['date_and_time'] = pd.Timestamp.now().strftime("%m/%d/%Y, %H:%M:%S")
+            dftemp['date_and_time'] = pd.Timestamp.now().strftime("%d/%m/%Y, %H:%M:%S")
             dftemp['message_text'] = msg
             dftemp = dftemp.to_frame()
             phone = sf.format_phone(phone)
@@ -52,7 +52,7 @@ try:
             dftemp = df.iloc[_, 0:11]
             dftemp['message_wanumber'] = ''
             dftemp['message_nonwanumber'] = phone
-            dftemp['date_and_time'] = pd.Timestamp.now().strftime("%m/%d/%Y, %H:%M:%S")
+            dftemp['date_and_time'] = pd.Timestamp.now().strftime("%d/%m/%Y, %H:%M:%S")
             dftemp['message_text'] = msg
             dftemp = dftemp.to_frame()
             phone = sf.format_phone(phone)
