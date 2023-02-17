@@ -40,6 +40,7 @@ def logwriter(dftemp, logpath):
     workbook = load_workbook(logpath)
     writer = pd.ExcelWriter(logpath, engine='openpyxl')
     writer.book = workbook
-    writer.sheets = {ws.title: ws for ws in workbook.worksheets}
-    dftemp.to_excel(writer, startrow=writer.sheets['Sheet1'].max_row, index = False, header= False)
+    worksheet = workbook.active
+    dftemp = dftemp.transpose()
+    dftemp.to_excel(writer, startrow=worksheet.max_row, startcol=0, index = False, header= False)
     writer.close()

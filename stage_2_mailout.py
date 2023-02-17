@@ -26,26 +26,32 @@ try:
             phone = df.iloc[_][col]
             if pd.isna(phone):
                 break
-            print(phone)
-            print('waphone')
-            print(type(phone))
             walist.append(phone)
-            dftemp = df.iloc[_,0:11]
-            sf.logwriter(dftemp, logpath)
+            dftemp = df.iloc[_, 0:11]
+            dftemp['message_wanumber'] = phone
+            dftemp['message_nonwanumber'] = ''
+            dftemp['message_text'] = 'msg'
+            dftemp['date_and_time'] = pd.Timestamp.now().strftime("%m/%d/%Y, %H:%M:%S")
+            dftemp = dftemp.to_frame()
             print(dftemp)
+            sf.logwriter(dftemp, logpath)
 
-        # for col in nonwaNumberColList:
-        #     phone = df.iloc[_][col]
-        #     if pd.isna(phone):
-        #         break
-        #     elif phone.startswith('+996312'):
-        #         break
-        #     elif phone in walist:
-        #         break
-        #     print(phone)
-        #     print('simphone')
-        #     print(type(phone))
-        #     print(df.iloc[_]['address name'])
+        for col in nonwaNumberColList:
+            phone = df.iloc[_][col]
+            if pd.isna(phone):
+                break
+            elif phone.startswith('+996312'):
+                break
+            elif phone in walist:
+                break
+            dftemp = df.iloc[_, 0:11]
+            dftemp['message_wanumber'] = ''
+            dftemp['message_nonwanumber'] = phone
+            dftemp['message_text'] = 'msg'
+            dftemp['date_and_time'] = pd.Timestamp.now().strftime("%m/%d/%Y, %H:%M:%S")
+            dftemp = dftemp.to_frame()
+            print(dftemp)
+            sf.logwriter(dftemp, logpath)
 
 except IndexError as e:
     print(e)
