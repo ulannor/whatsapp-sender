@@ -36,6 +36,8 @@ try:
             dftemp['date_and_time'] = pd.Timestamp.now().strftime("%m/%d/%Y, %H:%M:%S")
             dftemp['message_text'] = msg
             dftemp = dftemp.to_frame()
+            phone = sf.format_phone(phone)
+            sf.send_msg(phone, msg)
             sf.logwriter(dftemp, logpath)
 
         for col in nonwaNumberColList:
@@ -52,6 +54,8 @@ try:
             dftemp['date_and_time'] = pd.Timestamp.now().strftime("%m/%d/%Y, %H:%M:%S")
             dftemp['message_text'] = msg
             dftemp = dftemp.to_frame()
+            phone = sf.format_phone(phone)
+            sf.send_msg(phone, msg)
             sf.logwriter(dftemp, logpath)
 
 except IndexError as e:
