@@ -18,6 +18,7 @@ def format_phone(phone):
     phone = '+' + phone.replace('.0', '')
     return phone
 
+
 def read_txt_file(txtpath):
     with open(txtpath, 'r', encoding='utf-8') as f:
         text_msg = ''
@@ -25,9 +26,10 @@ def read_txt_file(txtpath):
             text_msg += row
     return text_msg
 
+
 def send_msg(phone, msg):
     sec = random.randint(40, 60)
     phone = format_phone(phone)
-    pw.sendwhatmsg_instantly(phone, msg, wait_time=sec, close_time = random.randint(5, 10))
+    pw.sendwhatmsg_instantly(phone, msg, wait_time=sec, close_time=random.randint(5, 10))
     time.sleep(random.randint(10, 15))
     k.press_and_release('ctrl+w')
