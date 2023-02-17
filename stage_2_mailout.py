@@ -1,11 +1,15 @@
 import pandas as pd
 
+
 leadsfile = 'test'
 messagetxt = 'text'
+logfile = 'testlog'
+
 n = 20
 
 filepath = f'.\\edited\\{leadsfile}.xlsx'
 txtpath = f'.\\messages\\{messagetxt}.txt'
+logpath = f'.\\wa_mailout_log\\{logfile}.xlsx'
 
 df = pd.read_excel(filepath, dtype='object')
 

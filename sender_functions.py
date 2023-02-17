@@ -1,3 +1,6 @@
+import pywhatkit as pw
+import time
+
 
 def format_phone(phone):
     if len(phone) == 10 and phone[0] == '0':
@@ -22,3 +25,9 @@ def read_txt_file(txtpath):
             text_msg += row
     return text_msg
 
+def send_msg(phone, msg):
+    sec = random.randint(40, 60)
+    phone = format_phone(phone)
+    pw.sendwhatmsg_instantly(phone, msg, wait_time=sec, close_time = random.randint(5, 10))
+    time.sleep(random.randint(10, 15))
+    k.press_and_release('ctrl+w')
