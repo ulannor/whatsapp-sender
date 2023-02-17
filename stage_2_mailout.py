@@ -18,6 +18,9 @@ df = pd.read_excel(filepath, dtype='object')
 waNumberColList = [col for col in df if col.startswith('whatsapp')]
 nonwaNumberColList = [col for col in df if col.startswith('phone')]
 
+msg = sf.read_txt_file(txtpath)
+
+
 try:
     for _ in range(0, n):
         walist = []
@@ -30,10 +33,9 @@ try:
             dftemp = df.iloc[_, 0:11]
             dftemp['message_wanumber'] = phone
             dftemp['message_nonwanumber'] = ''
-            dftemp['message_text'] = 'msg'
             dftemp['date_and_time'] = pd.Timestamp.now().strftime("%m/%d/%Y, %H:%M:%S")
+            dftemp['message_text'] = msg
             dftemp = dftemp.to_frame()
-            print(dftemp)
             sf.logwriter(dftemp, logpath)
 
         for col in nonwaNumberColList:
@@ -47,10 +49,9 @@ try:
             dftemp = df.iloc[_, 0:11]
             dftemp['message_wanumber'] = ''
             dftemp['message_nonwanumber'] = phone
-            dftemp['message_text'] = 'msg'
             dftemp['date_and_time'] = pd.Timestamp.now().strftime("%m/%d/%Y, %H:%M:%S")
+            dftemp['message_text'] = msg
             dftemp = dftemp.to_frame()
-            print(dftemp)
             sf.logwriter(dftemp, logpath)
 
 except IndexError as e:
