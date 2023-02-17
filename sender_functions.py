@@ -1,5 +1,7 @@
+import pandas as pd
 import pywhatkit as pw
 import time
+from openpyxl import load_workbook
 
 
 def format_phone(phone):
@@ -33,3 +35,11 @@ def send_msg(phone, msg):
     pw.sendwhatmsg_instantly(phone, msg, wait_time=sec, close_time=random.randint(5, 10))
     time.sleep(random.randint(10, 15))
     k.press_and_release('ctrl+w')
+
+def logwriter(dftemp, logpath):
+    workbook = load_workbook(logpath)
+    writer = pd.ExcelWriter(logpath, engine='openpyxl')
+    writer.book = workbook
+    writer.sheets = {ws.title: ws for ws in workbook.worksheets}
+    dftemp.to_excel(writer, startrow=writer.sheets['Sheet1'].max_row, index = False, header= False)
+    writer.close()
