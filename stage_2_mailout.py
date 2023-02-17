@@ -37,6 +37,7 @@ try:
             dftemp['message_text'] = msg
             dftemp = dftemp.to_frame()
             phone = sf.format_phone(phone)
+            print(phone)
             sf.send_msg(phone, msg)
             sf.logwriter(dftemp, logpath)
 
@@ -55,6 +56,7 @@ try:
             dftemp['message_text'] = msg
             dftemp = dftemp.to_frame()
             phone = sf.format_phone(phone)
+            print(phone)
             sf.send_msg(phone, msg)
             sf.logwriter(dftemp, logpath)
 

@@ -2,6 +2,8 @@ import pandas as pd
 import pywhatkit as pw
 import time
 from openpyxl import load_workbook
+import keyboard as k
+import random
 
 
 def format_phone(phone):
@@ -14,7 +16,7 @@ def format_phone(phone):
     for i in phone:
         if i in '-() +;':
             phone = phone.replace(i, '')
-            return phone
+            return '+' + phone
         else:
             return phone
     phone = '+' + phone.replace('.0', '')
