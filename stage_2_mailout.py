@@ -2,11 +2,11 @@ import pandas as pd
 import sender_functions as sf
 
 
-leadsfile = 'test'
+leadsfile = 'нотариальные услуги_edited'
 messagetxt = 'text'
-logfile = 'testlog'
+logfile = 'wa_mailout_log'
 
-n = 20
+n = 120
 
 filepath = f'.\\edited\\{leadsfile}.xlsx'
 txtpath = f'.\\messages\\{messagetxt}.txt'
