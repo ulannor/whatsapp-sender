@@ -5,7 +5,7 @@ from openpyxl import load_workbook
 import keyboard as k
 import random
 
-
+# Format phone numbers
 def format_phone(phone):
     if len(phone) == 10 and phone[0] == '0':
         phone = phone.replace('0', '996', 1)
@@ -22,7 +22,7 @@ def format_phone(phone):
     phone = '+' + phone.replace('.0', '')
     return phone
 
-
+# Read the text for the mailout message
 def read_txt_file(txtpath):
     with open(txtpath, 'r', encoding='utf-8') as f:
         text_msg = ''
@@ -30,7 +30,7 @@ def read_txt_file(txtpath):
             text_msg += row
     return text_msg
 
-
+# Sender function with random wait times in execution
 def send_msg(phone, msg):
     sec = random.randint(40, 60)
     phone = format_phone(phone)
@@ -38,6 +38,7 @@ def send_msg(phone, msg):
     time.sleep(random.randint(10, 15))
     k.press_and_release('ctrl+w')
 
+# Log the operation in the mailout log
 def logwriter(dftemp, logpath):
     workbook = load_workbook(logpath)
     writer = pd.ExcelWriter(logpath, engine='openpyxl')
