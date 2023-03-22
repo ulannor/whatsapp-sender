@@ -86,12 +86,12 @@ for name in newColList:
 df.to_excel(TEMP_PATH, index=False)
 
 
-#Create a list of phone number column indices for conditional formatting purposes by finding the index of each column name in two separate lists.
+# Create a list of phone number column indices for conditional formatting purposes by finding the index of each column name in two separate lists.
 tempLst = []
 for _ in waNumberColList + nonWaNumberColList:
     tempLst.append(df.columns.tolist().index(_) + 1)
 
-#Formatting highlights any duplicate values in each column with red text and a red fill. It freezes the first row and applies an auto-filter to the worksheet.
+# Formatting highlights any duplicate values in each column with red text and a red fill. It freezes the first row and applies an auto-filter to the worksheet.
 wb = op.load_workbook(TEMP_PATH)
 ws = wb.active
 
@@ -108,6 +108,6 @@ ws.conditional_formatting.add(f'A{bgn}:A{end}', rule)
 ws.auto_filter.ref = ws.dimensions
 ws.freeze_panes = 'A2'
 
-#Write the resulting dataframe into Excel file.
+# Write the resulting dataframe into Excel file.
 wb.save(EDITED_PATH)
 
